@@ -1,30 +1,3 @@
-<<<<<<< HEAD
-const mongoose = require("mongoose")
-const resisterSchema = new mongoose.Schema({
-    username : {
-        type : String,
-        required :true,
-    },
-    email : {
-        type : String,
-        required :true,
-        unique :true
-    },
-    mobile_number: {
-        type : Number,
-        required :true,
-        unique :true
-    },
-    password : {
-        type : String,
-        required :true,
-    }});
-
-
-    const Resister = new mongoose.model("Resister",resisterSchema);
-    module.exports = Resister;
-
-=======
 const { createHmac, randomBytes } = require("crypto")
 const mongoose = require("mongoose")
 const resisterSchema = new mongoose.Schema({
@@ -75,4 +48,3 @@ const resisterSchema = new mongoose.Schema({
     const Resister = new mongoose.model("Resister",resisterSchema);
     module.exports = Resister;
 
->>>>>>> c4c8a6c (updated navbar)
