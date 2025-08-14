@@ -2,7 +2,7 @@
 
  const postSchema = new mongoose.Schema({
     username : {
-        type:String,
+        type :mongoose.Schema.Types.ObjectId,
         required : true,
         ref: "Resister"
     },
