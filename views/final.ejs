@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand " href="#">Secret Talks</a>
+    <a class="navbar-brand " href="#"><spam class = "logo">Secret Talks</spam></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,10 +21,10 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">My posts</a>
+          <a class="nav-link" href="/my-post">My posts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Add posts</a>
+          <a class="nav-link" href="/add-new">Add posts</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,7 +35,7 @@
             <% } %>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">
+             
              <% if(user) { %>
              <a href = "/logout">log out</a>
             
@@ -51,11 +51,27 @@
     </div>
   </div>
 </nav>
+
+<div class="container">
+        <div class="card"></div>
+
+<div class="post-container">
+  <% posts.forEach(post => { %>
+    <div class="card">
+      <img src="<%= post.imageUrl %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        
+        <p class = "usename"><b><%=post.username.username %></b> </p>
+        <p class="card-text"><%= post.bio %></p>
+        <p class = "time"><%= post.time %></p>
+      </div>
+    </div> 
+  <% }) %>
+</div>
     
     
    
-    <div class="intro"> you have succesfully loged in and ur data is stored safely</div>
-    <div class="box">we are working on this site ..it will take a while</div>
+    
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>

@@ -8,7 +8,8 @@ const userTokken  = (Resister)=>{
     const payload = {
         username : Resister.username,
         _id: Resister._id,
-        email: Resister.email
+        email: Resister.email,
+        mobile_number : Resister.mobile_number
 
     }
 

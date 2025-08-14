@@ -9,14 +9,31 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 const path = require("path");
 const { log, clear } = require("console");
-const static_path = path.join(__dirname,"public");
+const static_path = path.join(__dirname,"./public");
 app.use(express.static(static_path))
 require("./src/db/conn.js")
 const Resister = require("./src/models/login.js");
+const PostsInfo = require("./src/models/post.js");
 const { text } = require("stream/consumers");
 const { userTokken } = require("./services/authentitation.js");
 const cookieParser = require("cookie-parser");
 const { checkForCookie } = require("./middlewares/authentication.js");
+const multer  = require('multer')
+
+
+
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    return cb(null, './public/uploads')
+  },
+  filename: function (req, file, cb) {
+    
+     return cb(null, `${Date.now()}-${file.originalname}`);
+  }
+})
+
+const upload = multer({ storage })
  
 app.use(cookieParser());
 app.use(checkForCookie("token"))
@@ -33,11 +50,17 @@ app.get("/resister",(req ,res) =>{
   return res.render("resister",{ text : ''})
 });
 
-app.get("/final",(req ,res) =>{
+app.get("/final",async(req ,res) =>{
       
-      
-    res.render("final", { user: req.intro });
+    const allPosts = await PostsInfo.find({}) .populate("username", "username");
+    res.render("final", { user: req.intro,
+  posts : allPosts, });
     })
+
+app.get("/add-new",(req ,res) =>{
+res.render("addpost",
+   { user: req.intro });
+})
 
 
 app.post("/resister",async(req ,res) => {
@@ -119,6 +142,36 @@ app.post("/login",async(req ,res)=>{
 app.get("/logout", (req ,res) =>{
   res.clearCookie("token").redirect("/final")
 })
+
+
+app.post("/add-new",upload.single("new_post_image"),async(req ,res) =>{
+  const bio = req.body.bio;
+     const post =  await PostsInfo.create({
+          bio,
+          username : req.intro._id,
+          imageUrl:`/uploads/${req.file.filename}`,
+          time: new Date().toLocaleString()
+    })
+ 
+  return res.redirect("/final")
+
+})
+
+
+app.get("/my-post",async(req ,res ) =>{
+   
+    const registeredUser = await Resister.findById(req.intro._id);
+     const myposts = await PostsInfo.find({ username: registeredUser.username });
+  
+
+    return res.render("myPosts",
+      { user: req.intro ,
+        myposts : myposts,
+      
+    })
+
+})
+
 
 
 

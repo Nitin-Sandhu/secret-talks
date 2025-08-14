@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&family=Montserrat:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    background-color: #121212;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #1f1f1f;
+    border-bottom: 1px solid #333;
+}
+
+.navbar-nav{
+    margin-left: 750px;
+}
+
+.navbar-brand .logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ff4d4d;
+}
+
+.nav-link {
+    color: #bbb !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #ff4d4d !important;
+}
+
+.dropdown-menu {
+    background-color: #1f1f1f;
+    border: none;
+}
+
+.dropdown-menu a {
+    color: #ccc;
+}
+
+.dropdown-menu a:hover {
+    background-color: #2a2a2a;
+    color: #ff4d4d;
+}
+
+/* Hero Section */
+.hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    width: 400px;
+}
+
+.heading h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff4d4d;
+}
+
+.file, .bio {
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+label {
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+input[type="file"] {
+    background-color: #2a2a2a;
+    border: none;
+    color: #ccc;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    color: #ccc;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+input[type="submit"] {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #e63939;
+}
